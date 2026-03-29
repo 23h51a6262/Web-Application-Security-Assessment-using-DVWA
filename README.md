@@ -1,4 +1,4 @@
-# Data Security Assessment using DVWA
+# Web Application Security Assessment using DVWA
 
 ## Overview
 
