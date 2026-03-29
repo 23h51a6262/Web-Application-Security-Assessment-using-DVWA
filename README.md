@@ -1,113 +1,171 @@
-# 🔐 VAPT Lab – Web Application Security Assessment (DVWA)
+# Web Application Security Assessment using DVWA
 
-Overview
+## Overview
 
-This project demonstrates a Vulnerability Assessment and Penetration Testing (VAPT) lab conducted on a deliberately vulnerable web application (DVWA) hosted on Metasploitable 2.
+This project demonstrates a **Vulnerability Assessment and Penetration Testing (VAPT)** exercise performed on a deliberately vulnerable web application (**DVWA**) hosted on **Metasploitable 2**.
 
-The objective is to identify, exploit, and analyze common web vulnerabilities in a controlled environment.
-
-## 🎯 Objectives
-
-* Identify SQL Injection vulnerabilities
-* Perform UNION-based SQL Injection attacks
-* Exploit Command Injection for privilege escalation
-* Demonstrate Cross-Site Scripting (XSS)
-* Perform network scanning and vulnerability assessment
+The objective is to identify, exploit, and analyze common web application vulnerabilities in a controlled lab environment using industry-standard tools and techniques.
 
 ---
 
-## 🛠️ Tools Used
+## Objectives
+
+* Identify and exploit SQL Injection vulnerabilities
+* Demonstrate Cross-Site Scripting (XSS) attacks
+* Perform Command Injection and privilege checks
+* Conduct network reconnaissance using Nmap
+* Perform web vulnerability scanning using Nikto
+
+---
+
+## Tools and Technologies
 
 * Kali Linux
 * Metasploitable 2
 * DVWA (Damn Vulnerable Web Application)
 * Nmap
 * Nikto
-* VirtualBox
+* Oracle VirtualBox
 
 ---
 
-## 🧪 Lab Setup
+## Lab Environment
 
-* Attacker Machine: Kali Linux
-* Target Machine: Metasploitable 2
-* Network: Host-Only Adapter
+* **Attacker Machine:** Kali Linux
+* **Target Machine:** Metasploitable 2
+* **Network Configuration:** Host-Only Network
 
 ---
 
-## 🔍 Key Experiments
+## Methodology
 
-### 1. Network Scanning
+### 1. Reconnaissance
 
-```bash
-nmap -A 192.168.56.101
+* Identified target IP address using system network tools
+* Performed port and service scanning using:
+
+  ```bash
+  nmap -A <target-ip>
+  ```
+
+### 2. Application Access
+
+* Accessed DVWA through web browser
+* Configured security level to low for testing
+
+### 3. Exploitation
+
+#### SQL Injection
+
+* Performed UNION-based SQL Injection
+* Extracted database information including tables and credentials
+
+#### Cross-Site Scripting (XSS)
+
+* Executed reflected and stored XSS payloads
+* Verified client-side script execution
+
+#### Command Injection
+
+* Executed system commands via input fields
+* Verified execution context and privileges
+
+### 4. Vulnerability Scanning
+
+* Performed web server scanning using:
+
+  ```bash
+  nikto -h http://<target-ip>
+  ```
+
+---
+
+## Results
+
+* Successfully identified and exploited SQL Injection vulnerability
+* Retrieved database information and user credentials
+* Demonstrated execution of malicious scripts via XSS
+* Achieved command execution on the target system
+* Identified insecure configurations and exposed services
+
+---
+
+## OWASP Top 10 Mapping
+
+* SQL Injection → A03: Injection
+* Cross-Site Scripting (XSS) → A03: Injection
+* Command Injection → A03: Injection
+* Security Misconfiguration → A05: Security Misconfiguration
+
+---
+
+## Skills Demonstrated
+
+* Web Application Penetration Testing
+* Vulnerability Assessment (VAPT)
+* SQL Injection Exploitation
+* Cross-Site Scripting (XSS)
+* Command Injection
+* Network Reconnaissance (Nmap)
+* Web Vulnerability Scanning (Nikto)
+
+---
+
+## Screenshots
+
+> Screenshots of the lab setup and attack execution are available in the `/screenshots` directory.
+
+---
+
+## How to Reproduce
+
+1. Install Oracle VirtualBox
+2. Set up Kali Linux and Metasploitable 2 virtual machines
+3. Configure Host-Only network between machines
+4. Start both machines
+5. Identify target IP using:
+
+   ```bash
+   ifconfig
+   ```
+6. Access DVWA:
+
+   ```
+   http://<target-ip>/dvwa
+   ```
+7. Login credentials:
+
+   * Username: admin
+   * Password: password
+
+---
+
+## Project Structure
+
+```
+/screenshots/
+   (attack screenshots)
+
+/report/
+   VAPT_Report.pdf
+
+README.md
 ```
 
-### 2. SQL Injection (UNION Based)
+---
 
-```sql
-1' UNION SELECT user, password FROM users#
-```
+## Future Work
 
-### 3. Command Injection
-
-```bash
-127.0.0.1; whoami
-```
-
-### 4. Cross-Site Scripting (XSS)
-
-```html
-<script>alert('XSS')</script>
-```
-
-### 5. Vulnerability Scanning
-
-```bash
-nikto -h http://192.168.56.101
-```
+* Extend testing to full OWASP Top 10 coverage
+* Integrate automated scanning tools
+* Add remediation techniques with secure code examples
+* Integrate findings with SIEM platforms (Splunk/ELK)
 
 ---
 
-## 📊 Results
-
-* Extracted database information via SQL Injection
-* Achieved remote command execution
-* Demonstrated stored and reflected XSS
-* Identified misconfigured services
-
----
-
-## 🛡️ Security Recommendations
-
-* Use prepared statements
-* Validate and sanitize input
-* Disable unnecessary services
-* Apply regular security patches
-* Use Web Application Firewalls
-
----
-
-## 📸 Screenshots
-
-* Nmap scan results
-* SQL Injection output
-* XSS alert
-* Command execution
-
----
-
-## 📚 Learning Outcomes
-
-* Hands-on penetration testing
-* Understanding real-world vulnerabilities
-* Practical use of security tools
-* Attack methodology and mitigation
-
----
- Author
+## Author
 
 Y.Pragnavi
-Cybersecurity Student 
+Cybersecurity Student
 
 ---
